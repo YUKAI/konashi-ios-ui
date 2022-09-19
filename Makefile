@@ -15,6 +15,8 @@ bootstrap: # Setup tools
 .PHONY: format
 format: # Format code
 	mint run swiftformat ./Sources/
+	mint run swiftformat ./Tests/
+	mint run swiftformat Package.swift
 
 .PHONY: lint
 lint: # Lint code

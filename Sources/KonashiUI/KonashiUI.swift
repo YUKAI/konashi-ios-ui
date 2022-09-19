@@ -61,7 +61,8 @@ public final class KonashiUI {
         }.store(in: &cancellable)
         CentralManager.shared.didDisconnectSubject.sink { _ in
             KonashiUI.shared.discoveredPeripherals.removeAll()
-            KonashiUI.shared.hudCancellable.removeAll()
+            KonashiUI.shared
+                .hudCancellable.removeAll()
             guard let window = UIApplication.shared.windows.first else {
                 return
             }

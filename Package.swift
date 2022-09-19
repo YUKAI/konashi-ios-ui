@@ -12,7 +12,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "KonashiUI",
-            targets: ["KonashiUI"]),
+            targets: ["KonashiUI"]
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -30,9 +31,11 @@ let package = Package(
                 "Konashi",
                 "Promises",
                 "JGProgressHUD"
-            ]),
+            ]
+        ),
         .testTarget(
             name: "KonashiUITests",
-            dependencies: ["KonashiUI"]),
+            dependencies: ["KonashiUI"]
+        )
     ]
 )
