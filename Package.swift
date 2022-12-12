@@ -18,7 +18,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "Konashi", url: "https://github.com/YUKAI/konashi-ios-sdk2.git", from: "0.0.1"),
+        .package(name: "Konashi", url: "https://github.com/YUKAI/konashi-ios-sdk2.git", from: "0.2.0"),
         .package(name: "Promises", url: "https://github.com/google/promises.git", from: "2.0.0"),
         .package(url: "https://github.com/JonasGessner/JGProgressHUD.git", from: "2.0.0")
     ],

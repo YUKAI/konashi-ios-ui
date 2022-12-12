@@ -1,6 +1,6 @@
 //
 //  KonashiUI.swift
-//  konashi-ios-ui
+//  konashi-ios-sdk2
 //
 //  Created by Akira Matsuda on 2021/08/10.
 //
@@ -17,12 +17,12 @@ public final class KonashiUI {
 
     fileprivate var hudCancellable = Set<AnyCancellable>()
     private var cancellable = Set<AnyCancellable>()
-    fileprivate var discoveredPeripherals = Set<Peripheral>()
+    fileprivate var discoveredPeripherals = Set<KonashiPeripheral>()
     var rssiThreshold: NSNumber = defaultRSSIThreshold
 
     init() {
         CentralManager.shared.didDiscoverSubject.sink { [weak self] peripheral, _, rssi in
-            guard let weakSelf = self else {
+            guard let weakSelf = self, let peripheral = peripheral as? KonashiPeripheral else {
                 return
             }
             if weakSelf.rssiThreshold.decimalValue <= rssi.decimalValue {
@@ -61,8 +61,7 @@ public final class KonashiUI {
         }.store(in: &cancellable)
         CentralManager.shared.didDisconnectSubject.sink { _ in
             KonashiUI.shared.discoveredPeripherals.removeAll()
-            KonashiUI.shared
-                .hudCancellable.removeAll()
+            KonashiUI.shared.hudCancellable.removeAll()
             guard let window = UIApplication.shared.windows.first else {
                 return
             }
@@ -74,11 +73,11 @@ public final class KonashiUI {
 }
 
 extension UIViewController: AlertPresentable {
-    public var presentingViewController: UIViewController {
+    var presentingViewController: UIViewController {
         return self
     }
 
-    public func presentCandidatePeripheral(name: String, timeoutDuration: TimeInterval = 3, rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold) {
+    func presentCandidatePeripheral(name: String, timeoutDuration: TimeInterval = 3, rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold) {
         KonashiUI.shared.rssiThreshold = rssiThreshold
         CentralManager.shared.find(name: name).timeout(timeoutDuration).then { [weak self] peripheral in
             guard let weakSelf = self else {
@@ -148,11 +147,11 @@ extension UIViewController: AlertPresentable {
         }
     }
 
-    public func presentKoshianListViewController(
+    func presentKoshianListViewController(
         scanDuration: TimeInterval = 3,
         rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold
-    ) -> Promise<Peripheral> {
-        let promise = Promise<Peripheral>.pending()
+    ) -> Promise<any Peripheral> {
+        let promise = Promise<any Peripheral>.pending()
         KonashiUI.shared.rssiThreshold = rssiThreshold
         CentralManager.shared.scan().delay(scanDuration).then(CentralManager.shared.stopScan).then { [weak self] _ in
             guard let weakSelf = self else {
