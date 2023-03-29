@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
     s.name             = 'KonashiUI'
-    s.version          = '0.0.1'
+    s.version          = '1.0.0'
     s.summary          = 'A support library for konashi-ios-sdk2'
-    s.swift_versions   = '5.4'
+    s.swift_versions   = '5.7'
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   
     s.description      = <<-DESC
     A support library that provides interfaces to connect konashi.
-                         DESC
+                        DESC
   
     s.homepage         = 'https://github.com/YUKAI/konashi-ios-ui'
     # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   
     # s.public_header_files = 'Pod/Classes/**/*.h'
     s.frameworks = 'UIKit'
-    s.dependency 'Konashi', '>= 0.0.1'
+    s.dependency 'Konashi', '>= 1.0.0'
     s.dependency 'PromisesSwift', '>= 2.0.0'
     s.dependency 'JGProgressHUD', '>= 2.0.0'
   end
