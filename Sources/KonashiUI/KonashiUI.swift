@@ -11,14 +11,10 @@ import Konashi
 import Promises
 import UIKit
 
-public final class KonashiUI {
-    public static let shared = KonashiUI()
-    public static let defaultRSSIThreshold: NSNumber = -80
+// MARK: - KonashiUI
 
-    fileprivate var hudCancellable = Set<AnyCancellable>()
-    private var cancellable = Set<AnyCancellable>()
-    fileprivate var discoveredPeripherals = Set<KonashiPeripheral>()
-    var rssiThreshold: NSNumber = defaultRSSIThreshold
+public final class KonashiUI {
+    // MARK: Lifecycle
 
     init() {
         CentralManager.shared.didDiscoverSubject.sink { [weak self] peripheral in
@@ -70,7 +66,27 @@ public final class KonashiUI {
             }
         }.store(in: &cancellable)
     }
+
+    // MARK: Public
+
+    public static let shared = KonashiUI()
+    public static let defaultRSSIThreshold: NSNumber = -80
+
+    // MARK: Internal
+
+    var rssiThreshold: NSNumber = defaultRSSIThreshold
+
+    // MARK: Fileprivate
+
+    fileprivate var hudCancellable = Set<AnyCancellable>()
+    fileprivate var discoveredPeripherals = Set<KonashiPeripheral>()
+
+    // MARK: Private
+
+    private var cancellable = Set<AnyCancellable>()
 }
+
+// MARK: - UIViewController + AlertPresentable
 
 extension UIViewController: AlertPresentable {
     var presentingViewController: UIViewController {

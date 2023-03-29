@@ -7,10 +7,14 @@
 
 import UIKit
 
+// MARK: - AlertContext
+
 struct AlertContext {
     let title: String?
     let detail: String?
 }
+
+// MARK: - AlertPresentable
 
 protocol AlertPresentable {
     var presentingViewController: UIViewController { get }
