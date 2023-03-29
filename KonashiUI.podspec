@@ -39,6 +39,6 @@ Pod::Spec.new do |s|
     # s.public_header_files = 'Pod/Classes/**/*.h'
     s.frameworks = 'UIKit'
     s.dependency 'Konashi', '>= 1.0.0'
-    s.dependency 'PromisesSwift', '>= 2.0.0'
+    s.dependency 'PromisesSwift', '>= 2.1.0'
     s.dependency 'JGProgressHUD', '>= 2.0.0'
   end
