@@ -21,11 +21,11 @@ public final class KonashiUI {
     var rssiThreshold: NSNumber = defaultRSSIThreshold
 
     init() {
-        CentralManager.shared.didDiscoverSubject.sink { [weak self] peripheral, _, rssi in
+        CentralManager.shared.didDiscoverSubject.sink { [weak self] peripheral in
             guard let weakSelf = self, let peripheral = peripheral as? KonashiPeripheral else {
                 return
             }
-            if weakSelf.rssiThreshold.decimalValue <= rssi.decimalValue {
+            if weakSelf.rssiThreshold.decimalValue <= peripheral.currentRSSI.decimalValue {
                 weakSelf.discoveredPeripherals.insert(peripheral)
             }
         }.store(in: &cancellable)
@@ -77,7 +77,7 @@ extension UIViewController: AlertPresentable {
         return self
     }
 
-    func presentCandidatePeripheral(name: String, timeoutDuration: TimeInterval = 3, rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold) {
+    public func presentCandidatePeripheral(name: String, timeoutDuration: TimeInterval = 3, rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold) {
         KonashiUI.shared.rssiThreshold = rssiThreshold
         CentralManager.shared.find(name: name).timeout(timeoutDuration).then { [weak self] peripheral in
             guard let weakSelf = self else {
@@ -147,7 +147,7 @@ extension UIViewController: AlertPresentable {
         }
     }
 
-    func presentKoshianListViewController(
+    public func presentKoshianListViewController(
         scanDuration: TimeInterval = 3,
         rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold
     ) -> Promise<any Peripheral> {
