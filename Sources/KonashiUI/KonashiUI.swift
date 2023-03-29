@@ -106,7 +106,7 @@ extension UIViewController: AlertPresentable {
                 return name
             }
             let alertController = UIAlertController(
-                title: NSLocalizedString("このKoshianと接続しますか？", comment: ""),
+                title: NSLocalizedString("このKonashiと接続しますか？", comment: ""),
                 message: name,
                 preferredStyle: .alert
             )
@@ -148,7 +148,7 @@ extension UIViewController: AlertPresentable {
                 return
             }
             let alertController = UIAlertController(
-                title: NSLocalizedString("次の名前のKoshianが見つかりませんでした", comment: ""),
+                title: NSLocalizedString("次の名前のKonashiが見つかりませんでした", comment: ""),
                 message: name,
                 preferredStyle: .alert
             )
@@ -163,7 +163,7 @@ extension UIViewController: AlertPresentable {
         }
     }
 
-    public func presentKoshianListViewController(
+    public func presentKonashiListViewController(
         scanDuration: TimeInterval = 3,
         rssiThreshold: NSNumber = KonashiUI.defaultRSSIThreshold
     ) -> Promise<any Peripheral> {
@@ -176,7 +176,7 @@ extension UIViewController: AlertPresentable {
             if KonashiUI.shared.discoveredPeripherals.isEmpty {
                 let alertController = UIAlertController(
                     title: nil,
-                    message: NSLocalizedString("接続可能なKoshianを発見できませんでした", comment: ""),
+                    message: NSLocalizedString("接続可能なKonashiを発見できませんでした", comment: ""),
                     preferredStyle: .alert
                 )
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: nil))
@@ -185,7 +185,7 @@ extension UIViewController: AlertPresentable {
             }
 
             let alertController = UIAlertController(
-                title: NSLocalizedString("接続するKoshianを選択してください", comment: ""),
+                title: NSLocalizedString("接続するKonashiを選択してください", comment: ""),
                 message: nil,
                 preferredStyle: .actionSheet
             )
@@ -246,7 +246,7 @@ extension UIViewController: AlertPresentable {
 
     private func presentConnectedAlertController(name: String?) {
         let alertController = UIAlertController(
-            title: NSLocalizedString("次のKoshianに接続しました", comment: ""),
+            title: NSLocalizedString("次のKonashiに接続しました", comment: ""),
             message: name,
             preferredStyle: .alert
         )
