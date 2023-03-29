@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "KonashiUI",
+    name: "konashi-ios-ui",
     platforms: [
         .iOS(.v13)
     ],
