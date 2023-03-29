@@ -7,7 +7,8 @@
 #
 
 Pod::Spec.new do |s|
-    s.name             = 'KonashiUI'
+    s.name             = 'konashi-ios-ui'
+    s.module_name      = 'KonashiUI'
     s.version          = '1.0.0'
     s.summary          = 'A support library for konashi-ios-sdk2'
     s.swift_versions   = '5.7'
