@@ -1,6 +1,6 @@
 # konashi-ios-ui
 
-A support library that provides interfaces to connect konashi.
+A support library that provides some user interfaces to connect konashi.
 
 [![Swift 5 supported](https://img.shields.io/badge/Swift-5.7-orange.svg)](https://github.com/apple/swift)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)](https://swift.org/package-manager/)
