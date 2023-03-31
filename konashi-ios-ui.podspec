@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/YUKAI/konashi-ios-ui.git', :tag => s.version.to_s }
 
     s.ios.deployment_target = '13.0'
+    s.static_framework = true
     s.source_files = 'Sources/**/**.swift'
 
     s.frameworks = 'UIKit'
