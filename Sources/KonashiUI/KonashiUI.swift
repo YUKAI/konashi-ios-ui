@@ -184,10 +184,16 @@ extension UIViewController: AlertPresentable {
                 return
             }
 
+            var style: UIAlertController.Style {
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    return .alert
+                }
+                return .actionSheet
+            }
             let alertController = UIAlertController(
                 title: NSLocalizedString("接続するKonashiを選択してください", comment: ""),
                 message: nil,
-                preferredStyle: .actionSheet
+                preferredStyle: style
             )
             for peripheral in KonashiUI.shared.discoveredPeripherals {
                 alertController.addAction(
