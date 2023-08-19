@@ -17,7 +17,7 @@ public final class KonashiUI {
     // MARK: Lifecycle
 
     init() {
-        CentralManager.shared.didDiscoverSubject.sink { [weak self] peripheral in
+        CentralManager.shared.didDiscoverPublisher.sink { [weak self] peripheral in
             guard let weakSelf = self, let peripheral = peripheral as? KonashiPeripheral else {
                 return
             }
@@ -55,7 +55,7 @@ public final class KonashiUI {
                 }
             }
         }.store(in: &cancellable)
-        CentralManager.shared.didDisconnectSubject.sink { _ in
+        CentralManager.shared.didDisconnectPublisher.sink { _ in
             KonashiUI.shared.discoveredPeripherals.removeAll()
             KonashiUI.shared.hudCancellable.removeAll()
             guard let window = UIApplication.shared.windows.first else {
